@@ -1,0 +1,25 @@
+# ==========================================
+# Dépendances pour le projet RAG Juridique
+# ==========================================
+
+# API OpenAI pour embeddings et génération
+openai==1.54.0
+
+# Traitement des PDFs
+PyMuPDF==1.24.0  # aussi appelé 'fitz'
+
+# Recherche vectorielle locale (gratuite!)
+faiss-cpu==1.8.0
+
+# Calcul numérique
+numpy==1.26.4
+
+# API REST
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# Utilitaires
+python-dotenv==1.0.1  # Pour gérer la clé API de manière sécurisée
+pydantic==2.9.2       # Validation des données
+requests==2.32.3      # Pour télécharger les PDFs si besoin
+

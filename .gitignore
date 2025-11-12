@@ -1,0 +1,33 @@
+# Environnement virtuel
+venv/
+env/
+ENV/
+
+# Variables d'environnement (contient la clé API!)
+.env
+
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Index et données générées
+index/
+*.faiss
+*.pkl
+
+# PDFs (peuvent être lourds)
+data/pdfs/*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
