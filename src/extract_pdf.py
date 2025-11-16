@@ -45,19 +45,31 @@ class PDFExtractor:
         """
         print(f"📄 Extraction du PDF : {pdf_path}")
         
-        # Ouvre le document PDF
-        doc = fitz.open(pdf_path)
-        text = ""
-        
-        # Parcourt chaque page
-        for page_num, page in enumerate(doc, 1):
-            # Extrait le texte de la page
-            page_text = page.get_text("text")
-            text += page_text
+        try:
+            # Ouvre le document PDF
+            doc = fitz.open(pdf_path)
+            text = ""
             
-        doc.close()
-        print(f"   ✅ {len(text)} caractères extraits")
-        return text
+            # Parcourt chaque page
+            for page_num, page in enumerate(doc, 1):
+                # Extrait le texte de la page
+                page_text = page.get_text("text")
+                text += page_text
+                
+            doc.close()
+            
+            # Vérifie que le PDF contient du texte
+            if len(text.strip()) < 100:
+                print(f"   ⚠️  PDF vide ou corrompu, ignoré")
+                return ""
+            
+            print(f"   ✅ {len(text)} caractères extraits")
+            return text
+            
+        except Exception as e:
+            print(f"   ❌ Erreur lors de l'extraction : {e}")
+            print(f"   ⚠️  PDF ignoré")
+            return ""
     
     def clean_text(self, text: str) -> str:
         """
@@ -174,6 +186,10 @@ class PDFExtractor:
             
             # Extraction
             raw_text = self.extract_text_from_pdf(pdf_path)
+            
+            # Ignore les PDFs vides ou corrompus
+            if not raw_text or len(raw_text.strip()) < 100:
+                continue
             
             # Nettoyage
             clean_text = self.clean_text(raw_text)

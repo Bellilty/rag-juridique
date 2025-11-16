@@ -18,8 +18,8 @@ index/
 *.faiss
 *.pkl
 
-# PDFs (peuvent être lourds)
-data/pdfs/*.pdf
+
+
 
 # IDE
 .vscode/
